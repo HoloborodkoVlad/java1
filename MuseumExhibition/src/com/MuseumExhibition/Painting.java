@@ -15,6 +15,8 @@ public class Painting extends Exhibit {
         super(name, author, creationYear);
         this.width = width;
         this.height = height;
+        this.setDescriptionPlate(author + " - \"" + name + "\" (" + creationYear + ") " +
+                "(Size: " + this.width + "x" + this.height + ")");
     }
 
     /** Get an painting`s width.

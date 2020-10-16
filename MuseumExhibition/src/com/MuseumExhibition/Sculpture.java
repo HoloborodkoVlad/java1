@@ -12,6 +12,8 @@ public class Sculpture extends Exhibit{
     public Sculpture(String name, Author author, int creationYear, MaterialType material) {
         super(name, author, creationYear);
         this.material = material;
+        this.setDescriptionPlate(author + " - \"" + name + "\" (" + creationYear + ") " +
+                "(Material: " + this.material +")");
     }
 
     /** Get an sculpture`s material.

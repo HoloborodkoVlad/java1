@@ -14,7 +14,7 @@ public class Main {
     private static Exhibition createExhibition() {
 
         Exhibition exhibition = new Exhibition("Exhibition of Leonardo da Vinci");
-        Author author = new Author("Leonardo", "da Vinci");
+        Author author = new Author("Leonardo da Vinci");
         exhibition.addExhibit(new Painting("Mona Lisa", author, 1503, 53, 77));
         exhibition.addExhibit(new Painting("Homo vitruvianus", author, 1491, 26, 35));
         exhibition.addExhibit(new Painting("Dama con l'ermellino", author, 1490, 39, 54));

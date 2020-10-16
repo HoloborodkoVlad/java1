@@ -2,9 +2,9 @@ package com.MuseumExhibition;
 
 public abstract class Exhibit {
 
-    protected String name;
-    protected Author author;
-    protected int creationYear;
+    private String name;
+    private Author author;
+    private int creationYear;
     private DescriptionPlate descriptionPlate;
 
     /** Creates an exhibit with specified name, author, creationYear.
@@ -61,6 +61,20 @@ public abstract class Exhibit {
      */
     public void setCreationYear(int creationYear) {
         this.creationYear = creationYear;
+    }
+
+    /** Get a description plate.
+     * @return description plateo object.
+     */
+    public DescriptionPlate getDescriptionPlate() {
+        return descriptionPlate;
+    }
+
+    /** Set an description plate text.
+     * @param text text to be set
+     */
+    public void setDescriptionPlate(String text) {
+        descriptionPlate.setText(text);
     }
 
     /** Override toString method
