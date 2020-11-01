@@ -1,5 +1,7 @@
 package com.MuseumExhibition;
 
+import java.util.Calendar;
+
 public abstract class Exhibit {
 
     private String name;
@@ -15,9 +17,16 @@ public abstract class Exhibit {
     public Exhibit(String name, Author author, int creationYear) {
         this.name = name;
         this.author = author;
-        this.creationYear = creationYear;
-        descriptionPlate = new DescriptionPlate(
-                 author + " - \"" + name + "\" (" + creationYear + ")"
+        try {
+            this.setCreationYear(creationYear, author);
+        }
+        catch(YearValidationException err) {
+            // Can mbe changed to logging
+            System.out.println(err.getMessage());
+            this.setCreationYear(Calendar.getInstance().get(Calendar.YEAR));
+        }
+        this.descriptionPlate = new DescriptionPlate(
+                this.author + " - \"" + this.name + "\" (" + this.getCreationYear() + ")"
         );
     }
 
@@ -63,6 +72,22 @@ public abstract class Exhibit {
         this.creationYear = creationYear;
     }
 
+    /** Set an exhibit`s year of creation comparing to authors` years of life.
+     * @param creationYear exhibit`s year of creation
+     */
+    public void setCreationYear(int creationYear, Author author) throws YearValidationException{
+        if(creationYear > author.getBorn_year()) {
+            int death_year =author.getDeath_year();
+            if(death_year != 0 && creationYear < death_year) {
+                this.creationYear = creationYear;
+                return;
+            }
+        }
+        throw new YearValidationException("Incorrect creation year. Automatically set to current year: " +
+                Calendar.getInstance().get(Calendar.YEAR) + ".");
+    }
+
+
     /** Get a description plate.
      * @return description plateo object.
      */
@@ -84,6 +109,35 @@ public abstract class Exhibit {
     public String toString() {
         return descriptionPlate.getText();
     }
+
+    /** Override hashcode method. Hashcode based on name, authors` initials and creation year.
+     It means, that some objects can have the same hashcode.
+     * @return hashCode ofthe object
+     */
+    @Override
+    public int  hashCode() {
+        int hash_code = 0;
+        for (char ch: (name+author.getInitials()).toCharArray()) {
+            hash_code += (int)ch;
+        }
+        return hash_code + getCreationYear();
+    }
+
+    /** Override equals method.
+     * @return true or false
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        return hashCode() == obj.hashCode(); // main comparing
+    }
+
+
 
 
     private class DescriptionPlate {
