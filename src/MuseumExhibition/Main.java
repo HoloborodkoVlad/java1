@@ -1,4 +1,4 @@
-package com.MuseumExhibition;
+package MuseumExhibition;
 
 import java.util.Iterator;
 
@@ -26,15 +26,7 @@ public class Main {
         Author author = new Author("Leonardo da Vinci", new int[]{1452 , 1519});
         exhibition.addExhibit(new Painting("Homo vitruvianus", author, 1491, 26, 35));
         exhibition.addExhibit(new Sculpture("Rider", author, 1508, MaterialType.Wood));
-
-        /* Test override equals and has_code */
-        Painting p1 = new Painting("Mona Lisa", author, 1630, 53, 77);
-        Painting p2 = new Painting("Mona Lisa", author, 1630, 2323, 3223);
-        if (p1.equals(p2)) {
-            System.out.println("There are same paintings, but with different sizes. " +
-                    "To exhibition will be added only one of them.");
-            exhibition.addExhibit(p1);
-        }
+        exhibition.addExhibit(new Painting("Mona Lisa", author, 1630, 2323, 3223));
 
         return exhibition;
     }

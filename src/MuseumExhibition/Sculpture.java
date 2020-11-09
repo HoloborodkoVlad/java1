@@ -1,4 +1,4 @@
-package com.MuseumExhibition;
+package MuseumExhibition;
 
 public class Sculpture extends Exhibit{
     private MaterialType material;

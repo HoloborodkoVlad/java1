@@ -1,4 +1,4 @@
-package com.MuseumExhibition;
+package MuseumExhibition;
 
 public class Painting extends Exhibit {
     private int width;

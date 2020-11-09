@@ -1,4 +1,4 @@
-package com.MuseumExhibition;
+package MuseumExhibition;
 
 public interface Person {
     public String getFullName();

@@ -1,4 +1,4 @@
-package com.MuseumExhibition;
+package MuseumExhibition;
 
 public enum MaterialType {
     Wood(),
