@@ -2,39 +2,39 @@ package MuseumExhibition;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 public class ExhibitionTest {
 
     private Exhibition exhibition;
-    private Exhibit[] temp_exhibits;
-    private Author author;
+    @Mock
+    private ArrayList<Exhibit> mockExhibits;
+    @Mock
+    private Author mockAuthor;
+    @Mock
+    private Painting painting;
 
     @Before
     public void setUp() {
+        MockitoAnnotations.initMocks(this);
+
         exhibition = new Exhibition("Test Exhibition");
-        author = new Author("Test Author", new int[] {1992, 2020});
-        temp_exhibits = new Exhibit[] {
-                new Painting("test_painting", author, 2010, 100, 200),
-                new Painting("test_painting", author, 2010, 100, 200),
-                new Sculpture("test_painting", author, 2010, MaterialType.Stone),
-                new Sculpture("test_painting", author, 2010, MaterialType.Stone)
-        };
-        for (Exhibit e: temp_exhibits) {
-            exhibition.addExhibit(e);
+        for (int i=0; i < 4; i++) {
+            exhibition.addExhibit(painting);
         }
     }
 
     @Test
     public void checkGetExhibitsAmount() throws Exception {
-        assertEquals(exhibition.getExhibitsAmount(), temp_exhibits.length);
+        when(mockExhibits.size()).thenReturn(4);
+        assertEquals(exhibition.getExhibitsAmount(), mockExhibits.size());
     }
 
-
-    @Test
-    public void testExhibitsOfExhibitionEquality() throws Exception{
-        assertArrayEquals(exhibition.getExhibits().toArray(), temp_exhibits);
-    }
 
 }
