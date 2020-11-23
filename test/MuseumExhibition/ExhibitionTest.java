@@ -14,10 +14,6 @@ public class ExhibitionTest {
 
     private Exhibition exhibition;
     @Mock
-    private ArrayList<Exhibit> mockExhibits;
-    @Mock
-    private Author mockAuthor;
-    @Mock
     private Painting painting;
 
     @Before
@@ -31,9 +27,14 @@ public class ExhibitionTest {
     }
 
     @Test
-    public void checkGetExhibitsAmount() throws Exception {
-        when(mockExhibits.size()).thenReturn(4);
-        assertEquals(exhibition.getExhibitsAmount(), mockExhibits.size());
+    public void getExhibitsAmount_checkArrayAmount_True() {
+        assertEquals(exhibition.getExhibitsAmount(), 4);
+    }
+
+    @Test
+    public void addExhibit_addElementToArray_True() {
+        exhibition.addExhibit(painting);
+        assertEquals(exhibition.getExhibits().size(), 5);
     }
 
 

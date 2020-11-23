@@ -90,7 +90,10 @@ public abstract class Exhibit {
     /** Set an exhibit`s year of creation comparing to authors` years of life.
      * @param creationYear exhibit`s year of creation
      */
-    public void changeCreationYear(int creationYear, int born_year, int death_year) throws YearValidationException{
+    public void changeCreationYear(int creationYear) throws YearValidationException{
+        int born_year = author.getBorn_year();
+        int death_year = author.getDeath_year();
+
         if(creationYear > born_year) {
             if(death_year != 0) {
                 if(creationYear < death_year){

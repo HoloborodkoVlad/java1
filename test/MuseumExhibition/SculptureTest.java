@@ -6,7 +6,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 public class SculptureTest {
@@ -19,7 +19,6 @@ public class SculptureTest {
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-//        author = new Author("Test van Testvich", new int[]{1234, 1289});
         when(author.getBorn_year()).thenReturn(1234);
         when(author.getDeath_year()).thenReturn(1289);
         sculpture = new Sculpture("test_sculpture", author, 1245, MaterialType.Clay);
@@ -27,18 +26,23 @@ public class SculptureTest {
 
 
     @Test
-    public void testChangeCreationYear() throws Exception{
-        sculpture.changeCreationYear(1245, author.getBorn_year(), author.getDeath_year());
+    public void changeCreationYear_ChangeCreationYearOfAnExhibit_CreationYear() throws Exception{
+        sculpture.changeCreationYear(1245);
         assertEquals(sculpture.getCreationYear(), 1245);
+        verify(author, times(2)).getBorn_year();
+        verify(author, times(2)).getDeath_year();
     }
 
     @Test(expected = YearValidationException.class)
-    public void testYearValidationException() throws YearValidationException{
-        sculpture.changeCreationYear(2000, author.getBorn_year(), author.getDeath_year());
+    public void changeCreationYear_ChangeCreationYearOfAnExhibitWithInvalidData_ThrowsYearValidationException()
+            throws YearValidationException{
+        verify(author, times(1)).getBorn_year();
+        verify(author, times(1)).getDeath_year();
+        sculpture.changeCreationYear(2000);
     }
 
     @Test
-    public void testSculptureEquality() throws Exception{
+    public void equals_checkEqualityRegardlessOfMaterial_True() throws Exception{
         Sculpture temp = new Sculpture("test_sculpture", author, 1245, MaterialType.Metal);
         assertEquals(sculpture, temp);
     }
