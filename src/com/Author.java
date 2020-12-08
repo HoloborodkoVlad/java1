@@ -1,6 +1,4 @@
-package com.MuseumExhibition;
-
-import java.util.ArrayList;
+package com;
 
 public class Author implements Person {
     private String name;

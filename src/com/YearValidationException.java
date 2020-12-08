@@ -1,4 +1,4 @@
-package com.MuseumExhibition;
+package com;
 
 public class YearValidationException extends Exception {
     YearValidationException(String msg) {

@@ -1,4 +1,4 @@
-package com.MuseumExhibition;
+package com;
 
 public class Painting extends Exhibit {
     private int width;
@@ -47,4 +47,11 @@ public class Painting extends Exhibit {
         this.height = height;
     }
 
+    /**
+     * Find area of a painting
+     * @return area
+     */
+    public int getArea() {
+        return this.height * this.width;
+    }
 }
